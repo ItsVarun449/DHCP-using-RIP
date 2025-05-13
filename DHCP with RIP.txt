@@ -1,0 +1,32 @@
+#DHCP R1:
+enable
+config t
+ip dhcp pool R1-POOL
+network 192.168.1.0 255.255.255.0
+default-router 192.168.1.1
+dns-server 8.8.8.8
+exit
+
+#RIP R1:
+enable
+config t
+router rip
+network 192.168.1.0
+network 192.168.2.0
+network 192.168.3.0
+
+#DHCP R2:
+enable
+ip dhcp pool R2-POOL
+network 192.168.3.0 255.255.255.0
+default-router 192.168.3.1
+dns-server 8.8.8.8
+exit
+
+#RIP R2
+enable
+config t
+router rip
+network 192.168.1.0
+network 192.168.2.0
+network 192.168.3.0
